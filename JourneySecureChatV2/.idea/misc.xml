@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../.gradle/caches/transforms-3/024d4ee8424da6d92c309c0ca21049fc/transformed/stream-chat-android-ui-components-5.2.0/res/layout/stream_ui_channel_list_item_background_view.xml" value="0.2368659420289855" />
+        <entry key="../../.gradle/caches/transforms-3/024d4ee8424da6d92c309c0ca21049fc/transformed/stream-chat-android-ui-components-5.2.0/res/layout/stream_ui_channel_list_item_foreground_view.xml" value="0.2368659420289855" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1965" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1965" />
+        <entry key="app/src/main/res/layout/activity_channel.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3591485507246377" />
+        <entry key="app/src/main/res/layout/bottom_navigation_menu.xml" value="0.26666666666666666" />
+        <entry key="app/src/main/res/layout/channel_list_item_view.xml" value="0.30898079758055463" />
+        <entry key="app/src/main/res/layout/channellistview.xml" value="0.2052980132450331" />
+        <entry key="app/src/main/res/layout/chat.xml" value="0.2147903442382813" />
+        <entry key="app/src/main/res/layout/me.xml" value="0.6552536010742188" />
+        <entry key="app/src/main/res/layout/message_list_view.xml" value="0.25659173690596004" />
+        <entry key="app/src/main/res/layout/other.xml" value="0.38697916666666665" />
+        <entry key="app/src/main/res/layout/sockets_test.xml" value="0.24728260869565216" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.187" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.187" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Journey Secure Chat V2</string>
+    <string name="authenticate_with_journey">Authenticate with Journey</string>
+    <string name="send">Send</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="button">Button</string>
+    <string name="tab2">Chat</string>
+</resources>
