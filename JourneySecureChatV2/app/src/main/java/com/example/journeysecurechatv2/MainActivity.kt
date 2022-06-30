@@ -36,21 +36,21 @@ class MainActivity : AppCompatActivity() {
         // Setting the Adapter with the recyclerview
         recyclerview.adapter = adapter1
 
-        val tabLayout = findViewById<TabLayout>(R.id.TabLayout)
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                startActivity(Intent(applicationContext, MessageActivity::class.java))
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // Handle tab reselect
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                startActivity(Intent(applicationContext, MainActivity::class.java))
-            }
-        })
+//        val tabLayout = findViewById<TabLayout>(R.id.TabLayout)
+//        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+//
+//            override fun onTabSelected(tab: TabLayout.Tab) {
+//                startActivity(Intent(applicationContext, MessageActivity::class.java))
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//                // Handle tab reselect
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//                startActivity(Intent(applicationContext, MainActivity::class.java))
+//            }
+//        })
 
     }
 

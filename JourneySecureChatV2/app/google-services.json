@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1042936263872",
+    "project_id": "securechat-354721",
+    "storage_bucket": "securechat-354721.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042936263872:android:b9475f5badec38e920e925",
+        "android_client_info": {
+          "package_name": "com.example.journeysecurechatv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042936263872-unvjuih33ptfa7beimm22aibllm38hsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP9BePhWOfFUF62ylu0kF4J_xQfEe2toQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042936263872-unvjuih33ptfa7beimm22aibllm38hsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

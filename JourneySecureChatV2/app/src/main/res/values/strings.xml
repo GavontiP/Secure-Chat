@@ -5,4 +5,9 @@
     <string name="enter_message">Enter Message</string>
     <string name="button">Button</string>
     <string name="tab2">Chat</string>
+    <string name="enroll_or_authenticate">Enroll or Authenticate</string>
+    <string name="button5">Enroll</string>
+    <string name="authButton">Authenticate</string>
+    <string name="textview">or</string>
+    <string name="journey_secure_chat">Journey Secure Chat</string>
 </resources>

@@ -2,15 +2,16 @@ package com.example.journeysecurechatv2
 
 import MessageListAdapter
 import OtherMessageAdapter
-import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.tabs.TabLayout
 import kotlin.concurrent.thread
 
 
@@ -40,6 +41,22 @@ class MessageActivity : AppCompatActivity(), MessageListener {
         val recyclerview = findViewById<RecyclerView>(R.id.recycler_gchat)
         WebSocketManager.init(serverUrl, this)
         // connect to websockets server as soon as chat  activity is started.
+
+        // toolbar
+
+        // toolbar
+        val toolbar: Toolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
+        setSupportActionBar(toolbar)
+
+        // add back arrow to toolbar
+
+        // add back arrow to toolbar
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setDisplayShowHomeEnabled(true)
+        }
+
+
         thread {
             kotlin.run {
                 WebSocketManager.connect()
@@ -75,21 +92,21 @@ class MessageActivity : AppCompatActivity(), MessageListener {
             }
         }
 
-        val tabLayout = findViewById<TabLayout>(R.id.TabLayout)
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                startActivity(Intent(applicationContext, MessageActivity::class.java))
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                //WebSocketManager.close()
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                startActivity(Intent(applicationContext, MainActivity::class.java))
-            }
-        })
+//        val tabLayout = findViewById<TabLayout>(R.id.TabLayout)
+//        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+//
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//                startActivity(Intent(applicationContext, MessageActivity::class.java))
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {
+//                //WebSocketManager.close()
+//            }
+//
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//                startActivity(Intent(applicationContext, MainActivity::class.java))
+//            }
+//        })
         }
 
         override fun onConnectSuccess() {
@@ -115,6 +132,14 @@ class MessageActivity : AppCompatActivity(), MessageListener {
                 toast.show()
             }
         }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // handle arrow click here
+        if (item.getItemId() === android.R.id.home) {
+            finish() // close this activity and return to preview activity (if there is any)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun postMessage(text: String?){
         println("id of this client:" + idVar.split(":")[1]);
