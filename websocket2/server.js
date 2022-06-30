@@ -55,4 +55,6 @@ wss.on("connection", (ws) => {
     console.log("Some Error occurred");
   };
 });
-console.log("The WebSocket server is running on port 3000");
+console.log(
+  `The WebSocket server is running on port ${WebSocketServer.Server.port}`
+);
