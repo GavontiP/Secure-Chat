@@ -2,7 +2,7 @@
 const WebSocketServer = require("ws");
 
 // Creating a new websocket server
-const wss = new WebSocketServer.Server({ port: 3000 });
+const wss = new WebSocketServer.Server({ port: process.env.PORT || 3000 });
 
 //parse the client message for their UID
 const getID = (data) => {
