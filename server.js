@@ -35,7 +35,7 @@ wss.on("connection", (ws) => {
     console.log(`Client ${ws.id} has disconnected!`);
   };
 
-  // handling what to do when clients disconnects from server
+  // handling what to do when clients disconnects from server.
   ws.on("close", () => {
     console.log("the client has connected");
   });
