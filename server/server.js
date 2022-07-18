@@ -1,48 +1,45 @@
-// Importing the required modules
-const WebSocketServer = require("ws");
-
-// Creating a new websocket server
-const wss = new WebSocketServer.Server({ port: process.env.PORT || 3000 });
-
-//parse the client message for their UID
-const getID = (data) => {
-  let id = data.split(":")[1];
-  return id;
-};
-
-//parse the client message for their UID
-const getMessage = (data) => {
-  let message = data.split(":")[0];
-  message = message.split(" ")[0];
-  return message;
-};
-
-// Creating connection using websocket
-wss.on("connection", (ws) => {
-  console.log("new client connected");
-
-  // handling when recieving a new message
-  ws.onmessage = ({ data }) => {
-    ws.id = getID(data);
-    wss.clients.forEach(function each(client) {
-      client.send(data);
-    });
-    console.log(`Client has sent us:${data}`);
-  };
-
-  // handling when a client closes the connection
-  ws.onclose = function () {
-    console.log(`Client ${ws.id} has disconnected!`);
-  };
-
-  // handling what to do when clients disconnects from server.
-  ws.on("close", () => {
-    console.log("the client has connected");
-  });
-
-  // handling client connection error
-  ws.onerror = function () {
-    console.log("Some Error occurred");
-  };
+const express = require("express");
+var cors = require("cors");
+const port = process.env.PORT || 8080;
+const app = express();
+const url = require("url");
+app.use(cors());
+let allow = false;
+// to get the ADC automatically
+var admin = require("firebase-admin");
+var serviceAccount = require("./securechat-354721-firebase-adminsdk-hmrnx-378aea9257.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
 });
-console.log("The WebSocket server is running on port 3000");
+
+// define the first route
+app.get("/", function (req, res) {});
+
+app.post("/callback", function async(req, res) {
+  console.log("pipeline complete");
+  allow = true;
+  // This registration token comes from the client FCM SDKs.
+  const registrationToken = url.parse(req.url, true).query.token;
+  console.log("registration token: " + registrationToken);
+  const message = {
+    data: {
+      message: "Pipeline Completed",
+    },
+    token: registrationToken,
+  };
+
+  // Send a message to the device corresponding to the provided
+  // registration token.
+  admin
+    .messaging()
+    .send(message)
+    .then((response) => {
+      // Response is a message ID string.
+      console.log("Successfully sent message:", response);
+    })
+    .catch((error) => {
+      console.log("Error sending message:", error);
+    });
+});
+// start the server listening for requests
+app.listen(port, () => console.log(`Server is running on port: ${port}`));
