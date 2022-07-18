@@ -4,7 +4,7 @@
   "description": "This is a simple multi client chatting application.",
   "main": "web.js",
   "scripts": {
-    "start": "node ./web-socket/ws.js"
+    "start": "node ./server/server.js"
   },
   "keywords": [
     "heroku"
