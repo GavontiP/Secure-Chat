@@ -15,7 +15,7 @@ object  WebSocketManager {
     private lateinit var mWebSocket: WebSocket
     private var isConnect = false
     private var connectNum = 0
-    fun init(url: String, _messageListener: MessageListener) {
+    fun init(url: String, _messageListener: MessageActivity) {
         client = OkHttpClient.Builder()
             .writeTimeout(5, TimeUnit.SECONDS)
             .readTimeout(5, TimeUnit.SECONDS)

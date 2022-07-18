@@ -10,4 +10,8 @@
     <string name="authButton">Authenticate</string>
     <string name="textview">or</string>
     <string name="journey_secure_chat">Journey Secure Chat</string>
+    <string name="domain">journey.securechat.com</string>
+    <string name="asset_statements" translatable="false">[{ \"include\": \"https://pure-beach-76649.herokuapp.com/.well-known/assetlinks.json\" }]</string>
+    <string name="default_notification_channel_id">MainActivity</string>
+
 </resources>

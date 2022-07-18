@@ -1,11 +1,11 @@
+package com.example.journeysecurechatv2
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.journeysecurechatv2.ItemsViewModel
-import com.example.journeysecurechatv2.OtherItemsModel
-import com.example.journeysecurechatv2.R
+import com.example.journeysecurechatv2.MyUtils.Companion.currentDateTimeString
 
 class OtherMessageAdapter(private val mList: ArrayList<OtherItemsModel>) : RecyclerView.Adapter<OtherMessageAdapter.ViewHolder>() {
 
@@ -18,15 +18,15 @@ class OtherMessageAdapter(private val mList: ArrayList<OtherItemsModel>) : Recyc
 
         return ViewHolder(view)
     }
-
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val OtherItemsModel = mList[position]
+        val otherItemsModel = mList[position]
 
         // sets the text to the textview from our itemHolder class
-        holder.textView.text = OtherItemsModel.text
-        //holder.textView1.text = ItemsViewModel.text
+        holder.textView.text = otherItemsModel.text
+        holder.textView1.text = currentDateTimeString
+        holder.userName.text = MessageActivity.userId
 
     }
 
@@ -37,7 +37,8 @@ class OtherMessageAdapter(private val mList: ArrayList<OtherItemsModel>) : Recyc
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        //val textView1: TextView = itemView.findViewById(R.id.text_gchat_message_other)
+        val userName: TextView = itemView.findViewById(R.id.text_gchat_user_other)
+        val textView1: TextView = itemView.findViewById(R.id.text_gchat_timestamp_other)
         val textView: TextView = itemView.findViewById(R.id.text_gchat_message_other)
     }
 }

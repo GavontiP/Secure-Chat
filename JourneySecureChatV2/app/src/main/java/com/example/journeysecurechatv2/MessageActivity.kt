@@ -1,7 +1,5 @@
 package com.example.journeysecurechatv2
 
-import MessageListAdapter
-import OtherMessageAdapter
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -17,17 +15,21 @@ import kotlin.concurrent.thread
 
 class MessageActivity : AppCompatActivity(), MessageListener {
 
-    private fun getRandomString(length: Int) : String {
+    companion object{
+        var userId = ""
+    }
+
+    private fun getRandomString() : String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
-        return (1..length)
+        return (1..8)
             .map { allowedChars.random() }
             .joinToString("")
     }
-    private val idVar: String = "id:" + getRandomString(8)
+    private val idVar: String = "id:" + getRandomString()
     // ArrayList of class ItemsViewModel
     private val data = ArrayList<ItemsViewModel>()
     private val data1 = ArrayList<OtherItemsModel>()
-    private val serverUrl = "ws://10.0.2.2:8080"
+    private val serverUrl = "ws://dry-temple-70159.herokuapp.com"
 
 
 
@@ -35,15 +37,14 @@ class MessageActivity : AppCompatActivity(), MessageListener {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.message_list_view)
+//        handleIntent(intent)
+
         val button = findViewById<Button>(R.id.button_gchat_send)
         val userInput = findViewById<EditText>(R.id.edit_gchat_message)
         // getting the recyclerview by its id
         val recyclerview = findViewById<RecyclerView>(R.id.recycler_gchat)
         WebSocketManager.init(serverUrl, this)
         // connect to websockets server as soon as chat  activity is started.
-
-        // toolbar
-
         // toolbar
         val toolbar: Toolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -91,25 +92,9 @@ class MessageActivity : AppCompatActivity(), MessageListener {
                 userInput.text.clear()
             }
         }
-
-//        val tabLayout = findViewById<TabLayout>(R.id.TabLayout)
-//        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-//
-//            override fun onTabSelected(tab: TabLayout.Tab?) {
-//                startActivity(Intent(applicationContext, MessageActivity::class.java))
-//            }
-//
-//            override fun onTabReselected(tab: TabLayout.Tab?) {
-//                //WebSocketManager.close()
-//            }
-//
-//            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                startActivity(Intent(applicationContext, MainActivity::class.java))
-//            }
-//        })
         }
 
-        override fun onConnectSuccess() {
+    override fun onConnectSuccess() {
             addText( " Connected successfully \n " )
         }
 
@@ -123,9 +108,8 @@ class MessageActivity : AppCompatActivity(), MessageListener {
 
         override fun onMessage(text: String?) {
             addText( " Receive message: $text \n " )
-            postMessage(text);
+            postMessage(text)
         }
-
         private fun addText(text: String?) {
             runOnUiThread {
                 val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_LONG)
@@ -134,7 +118,7 @@ class MessageActivity : AppCompatActivity(), MessageListener {
         }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // handle arrow click here
-        if (item.getItemId() === android.R.id.home) {
+        if (item.itemId == android.R.id.home) {
             finish() // close this activity and return to preview activity (if there is any)
         }
         return super.onOptionsItemSelected(item)
@@ -142,20 +126,20 @@ class MessageActivity : AppCompatActivity(), MessageListener {
 
 
     private fun postMessage(text: String?){
-        println("id of this client:" + idVar.split(":")[1]);
-        println("id of the sender:" + text.toString().split(":")[1]);
+        println("id of this client:" + idVar.split(":")[1])
+        println("id of the sender:" + text.toString().split(":")[1])
+        userId = text.toString().split(":")[1]
         if(text.toString().split(":")[1] == idVar.split(":")[1]){
-            println("these are equal");
 
         }
         else{
             runOnUiThread {
-                println("id of client receiving:" + idVar.split(":")[1]);
+                println("id of client receiving:" + idVar.split(":")[1])
                 //creates recycler view for other message
                 val otherrecyclerview = findViewById<RecyclerView>(R.id.recycler_channelOther)
                 // this creates a vertical layout Manager
                 otherrecyclerview.layoutManager = LinearLayoutManager(this)
-                data1.add(OtherItemsModel(text.toString().split(" ")[0]!!))
+                data1.add(OtherItemsModel(text.toString()))
 
                 // This will pass the ArrayList to our Adapter
                 val adapter = OtherMessageAdapter(data1)
