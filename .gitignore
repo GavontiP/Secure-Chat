@@ -1,4 +1,4 @@
 node_modules/
-.firebaserc/
-firestore.indexes.json/
-firebase.json/
+.firebaserc
+firestore.indexes.json
+firebase.json
