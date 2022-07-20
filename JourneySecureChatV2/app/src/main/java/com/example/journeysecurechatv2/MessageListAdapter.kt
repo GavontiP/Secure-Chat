@@ -9,8 +9,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import com.example.journeysecurechatv2.MyUtils.Companion.currentDateTimeString
 import com.example.journeysecurechatv2.MessageActivity.Companion.userId
+import kotlin.collections.ArrayList
 
-class MessageListAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<MessageListAdapter.ViewHolder>() {
+class MessageListAdapter(private val mList: ArrayList<OtherItemsModel>) : RecyclerView.Adapter<MessageListAdapter.ViewHolder>() {
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view

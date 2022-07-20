@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     // [END ask_post_notifications]
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.channellistview)
         askNotificationPermission()
@@ -88,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
             // Log and toast
             Log.d(TAG, token)
-            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+//            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
         })
 
     }

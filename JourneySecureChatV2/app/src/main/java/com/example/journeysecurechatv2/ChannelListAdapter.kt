@@ -52,7 +52,7 @@ if(!allowed){
                 val client = OkHttpClient()
                 val mediaType = "application/json".toMediaTypeOrNull()
                 val body =
-                    "{\"delivery\":{\"method\":\"sms\",\"phoneNumber\":\"+17205858291\"},\"customer\":{\"uniqueId\":\"gavonti-test\"},\"callbackUrls\":[\"https://pure-beach-76649.herokuapp.com/callback?token=${token}\"],\"language\":\"en-US\",\"pipelineKey\":\"bd6cb621-eba1-4b2e-84e4-7e519daabf40\"}".toRequestBody(
+                    "{\"delivery\":{\"method\":\"sms\",\"phoneNumber\":\"+17205858291\"},\"customer\":{\"uniqueId\":\"gavonti-test\"},\"callbackUrls\":[\"https://dry-temple-70159.herokuapp.com/callback?token=${token}\"],\"language\":\"en-US\",\"pipelineKey\":\"bd6cb621-eba1-4b2e-84e4-7e519daabf40\"}".toRequestBody(
                         mediaType
                     )
                 print(body)

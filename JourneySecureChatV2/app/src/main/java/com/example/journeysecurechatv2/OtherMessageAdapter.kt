@@ -1,5 +1,6 @@
 package com.example.journeysecurechatv2
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,9 +25,17 @@ class OtherMessageAdapter(private val mList: ArrayList<OtherItemsModel>) : Recyc
         val otherItemsModel = mList[position]
 
         // sets the text to the textview from our itemHolder class
-        holder.textView.text = otherItemsModel.text
-        holder.textView1.text = currentDateTimeString
-        holder.userName.text = MessageActivity.userId
+        if(otherItemsModel.text.split(";")[1] == "other"){
+            holder.textView.text = otherItemsModel.text.split(";")[0];
+            holder.textView1.text = currentDateTimeString
+            holder.userName.text = "Other: " + MessageActivity.userId
+        }
+        else if (otherItemsModel.text.split(";")[1] == "me"){
+            holder.textView.text = otherItemsModel.text.split(";")[0];
+            holder.textView1.text = currentDateTimeString
+            holder.userName.text = "Me"
+            holder.textView.setBackgroundColor(Color.WHITE);
+        }
 
     }
 

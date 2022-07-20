@@ -27,9 +27,9 @@ class MessageActivity : AppCompatActivity(), MessageListener {
     }
     private val idVar: String = "id:" + getRandomString()
     // ArrayList of class ItemsViewModel
-    private val data = ArrayList<ItemsViewModel>()
+    //private val data = ArrayList<ItemsViewModel>()
     private val data1 = ArrayList<OtherItemsModel>()
-    private val serverUrl = "ws://dry-temple-70159.herokuapp.com"
+    private val serverUrl = "ws://pure-beach-76649.herokuapp.com"
 
 
 
@@ -42,7 +42,7 @@ class MessageActivity : AppCompatActivity(), MessageListener {
         val button = findViewById<Button>(R.id.button_gchat_send)
         val userInput = findViewById<EditText>(R.id.edit_gchat_message)
         // getting the recyclerview by its id
-        val recyclerview = findViewById<RecyclerView>(R.id.recycler_gchat)
+        val recyclerview = findViewById<RecyclerView>(R.id.recycler_channelOther)
         WebSocketManager.init(serverUrl, this)
         // connect to websockets server as soon as chat  activity is started.
         // toolbar
@@ -82,11 +82,11 @@ class MessageActivity : AppCompatActivity(), MessageListener {
                 recyclerview.layoutManager = LinearLayoutManager(this)
 
                 // your code to perform when the user clicks on the button
-                data.add(ItemsViewModel(userInput.text.toString()))
+                data1.add(OtherItemsModel(userInput.text.toString()+";me"))
 
                 // This will pass the ArrayList to our Adapter
-                val adapter = MessageListAdapter(data)
-
+                val adapter = OtherMessageAdapter(data1)
+                recyclerview.scrollToPosition(adapter.itemCount - 1);
                 // Setting the Adapter with the recyclerview
                 recyclerview.adapter = adapter
                 userInput.text.clear()
@@ -95,19 +95,19 @@ class MessageActivity : AppCompatActivity(), MessageListener {
         }
 
     override fun onConnectSuccess() {
-            addText( " Connected successfully \n " )
+            print( " Connected successfully \n " )
         }
 
         override fun onConnectFailed() {
-            addText( " Connection failed \n " )
+            print( " Connection failed \n " )
         }
 
         override fun onClose() {
-            addText( " Closed successfully \n " )
+            print( " Closed successfully \n " )
         }
 
         override fun onMessage(text: String?) {
-            addText( " Receive message: $text \n " )
+            print( " Receive message: $text \n " )
             postMessage(text)
         }
         private fun addText(text: String?) {
@@ -139,11 +139,10 @@ class MessageActivity : AppCompatActivity(), MessageListener {
                 val otherrecyclerview = findViewById<RecyclerView>(R.id.recycler_channelOther)
                 // this creates a vertical layout Manager
                 otherrecyclerview.layoutManager = LinearLayoutManager(this)
-                data1.add(OtherItemsModel(text.toString()))
-
+                data1.add(OtherItemsModel(text.toString().split("id")[0] + ";other"))
                 // This will pass the ArrayList to our Adapter
                 val adapter = OtherMessageAdapter(data1)
-
+                otherrecyclerview.scrollToPosition(adapter.itemCount - 1);
                 // Setting the Adapter with the recyclerview
                 otherrecyclerview.adapter = adapter
             }
